@@ -4,5 +4,7 @@ return {
     { "gc", mode = {"n", "x"} },
     { "gb", mode = {"n", "x"} },
   },
-  opts = {},
+  opts = {
+    extra = { eol = "gca" },
+  },
 }
