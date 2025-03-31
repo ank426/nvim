@@ -5,6 +5,9 @@ return {
     { "<leader>?", function() require("which-key").show({ global = false }) end, desc = "Buffer Local Keymaps (which-key)" },
   },
   opts = {
+    delay = function(ctx)
+      return ctx.plugin and 0 or 300
+    end,
     spec = {
       -- Putting these as normal keymaps makes them not work when you type fast
       { "<leader>e",  group = "[E]dit "..vim.fn.fnamemodify(vim.fn.stdpath("config") --[[@as string]],           ":~") },

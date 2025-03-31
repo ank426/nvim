@@ -1,3 +1,4 @@
+-- Now that nvim sorts by severity there might be a slightly faster algorithm (also shows higher priority signs earlier)
 -- :h diagnostic-handlers-example (second one)
 local ns = vim.api.nvim_create_namespace("custom-sign-handler")
 local orig_signs_handler = vim.diagnostic.handlers.signs
@@ -29,3 +30,13 @@ vim.diagnostic.config({
   },
   severity_sort = true,
 })
+
+vim.keymap.set('n', 'gK', function()
+  if vim.diagnostic.config().virtual_lines then
+    vim.diagnostic.config({ virtual_lines = false })
+  else
+    vim.diagnostic.config({ virtual_lines = {
+      current_line = true,
+    }})
+  end
+end, { desc = 'Toggle diagnostic virtual_lines' })
