@@ -3,6 +3,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   callback = function() vim.highlight.on_yank() end, -- Needs function wrapping cuz callback passes arguments
 })
 
+vim.api.nvim_create_autocmd("FileType", {
+  command = "setlocal formatoptions-=o",
+})
+
 vim.api.nvim_create_autocmd("StdinReadPost", {
   desc = "Mark as unmodified when reading from stdin",
   command = "set nomodified",
