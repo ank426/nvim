@@ -1,6 +1,7 @@
 -- These names can be anything, I've chosen to use lspconfig names
 
 -- C / C++
+vim.lsp.enable("clangd-c")
 vim.lsp.enable("clangd")
 
 -- Python
