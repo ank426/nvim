@@ -23,10 +23,13 @@ vim.keymap.set("n", "<C-j>", "<C-w>j", { desc = "Move focus to the lower window"
 vim.keymap.set("n", "<C-k>", "<C-w>k", { desc = "Move focus to the upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w>l", { desc = "Move focus to the right window" })
 
-vim.keymap.set("o", "ir", "i[")
-vim.keymap.set("o", "ar", "a[")
-vim.keymap.set("o", "ia", "i<")
-vim.keymap.set("o", "aa", "a<")
+vim.keymap.set({"o", "x"}, "ir", "i[")
+vim.keymap.set({"o", "x"}, "ar", "a[")
+vim.keymap.set({"o", "x"}, "ia", "i<")
+vim.keymap.set({"o", "x"}, "aa", "a<")
+
+vim.keymap.set("x", "<", "<gv")
+vim.keymap.set("x", ">", ">gv")
 
 local confpath = vim.fn.stdpath("config")
 vim.keymap.set("n", "<leader>en", "<cmd>edit "..confpath.."<cr>",                      { desc = "Edit Neovim" })
