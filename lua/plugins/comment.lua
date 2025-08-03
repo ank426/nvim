@@ -5,6 +5,6 @@ return {
     { "gb", mode = {"n", "x"} },
   },
   opts = {
-    extra = { eol = "gca" },
+    -- extra = { eol = "gca" },
   },
 }
