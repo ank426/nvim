@@ -15,6 +15,9 @@ vim.lsp.enable("lua_ls")
 -- C Sharp
 vim.lsp.enable("csharp_ls")
 
+-- Rust
+vim.lsp.enable("rust_analyzer")
+
 
 -- https://microsoft.github.io/language-server-protocol/specifications/lsp/3.17/specification/
 -- search ServerCapabilites 2nd match

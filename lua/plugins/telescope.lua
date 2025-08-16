@@ -79,9 +79,9 @@ return {
       grep_string = { preview_title = false },
       find_files = {
         preview_title = false,
-        hidden = true,
-        no_ignore = true,
-        no_ignore_parent = true,
+        -- hidden = true,
+        -- no_ignore = true,
+        -- no_ignore_parent = true,
       },
       treesitter = { preview_title = false },
       current_buffer_fuzzy_find = {

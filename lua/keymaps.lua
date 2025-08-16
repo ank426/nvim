@@ -31,6 +31,14 @@ vim.keymap.set({"o", "x"}, "aa", "a<")
 vim.keymap.set("x", "<", "<gv")
 vim.keymap.set("x", ">", ">gv")
 
+vim.keymap.set("n", "zS", vim.show_pos, { desc = "Show Position" })
+
+vim.keymap.set("n", "gD",  vim.lsp.buf.declaration,      { desc = "LSP: [G]oto [D]eclaration" })
+vim.keymap.set("n", "grf", vim.lsp.buf.format,           { desc = "LSP: [F]ormat" })
+vim.keymap.set("n", "grt", vim.lsp.buf.type_definition,  { desc = "LSP: Goto [T]ype Definition" })
+vim.keymap.set("n", "grT", vim.lsp.buf.typehierarchy,    { desc = "LSP: [T]ype Hierarchy" })
+vim.keymap.set("n", "grw", vim.lsp.buf.workspace_symbol, { desc = "LSP: [W]orkspace Symbols" })
+
 local confpath = vim.fn.stdpath("config")
 vim.keymap.set("n", "<leader>en", "<cmd>edit "..confpath.."<cr>",                      { desc = "Edit Neovim" })
 vim.keymap.set("n", "<leader>ei", "<cmd>edit "..confpath.."/init.lua<cr>",             { desc = "Edit init.lua" })
@@ -47,9 +55,3 @@ vim.keymap.set("n", "<leader>eL", "<cmd>edit "..confpath.."/lsp<cr>",           
 vim.keymap.set("n", "<leader>eQ", "<cmd>edit "..confpath.."/queries<cr>",              { desc = "Edit queries" })
 vim.keymap.set("n", "<leader>En", "<cmd>edit "..confpath.."/after<cr>",                { desc = "Edit after" })
 vim.keymap.set("n", "<leader>EF", "<cmd>edit "..confpath.."/after/ftplugin<cr>",       { desc = "Edit after/ftplugin" })
-
-vim.keymap.set("n", "gD",  vim.lsp.buf.declaration,      { desc = "LSP: [G]oto [D]eclaration" })
-vim.keymap.set("n", "grf", vim.lsp.buf.format,           { desc = "LSP: [F]ormat" })
-vim.keymap.set("n", "grt", vim.lsp.buf.type_definition,  { desc = "LSP: Goto [T]ype Definition" })
-vim.keymap.set("n", "grT", vim.lsp.buf.typehierarchy,    { desc = "LSP: [T]ype Hierarchy" })
-vim.keymap.set("n", "grw", vim.lsp.buf.workspace_symbol, { desc = "LSP: [W]orkspace Symbols" })

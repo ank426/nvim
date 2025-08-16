@@ -88,6 +88,15 @@ return {
           "using namespace std;",
         },
       },
+      rust = {
+        before = {
+          "#![allow(dead_code)]",
+          "struct Solution {}",
+        },
+        after = {
+          "fn main() {}",
+        },
+      }
     },
   },
   config = function(_, opts)
@@ -124,6 +133,67 @@ return {
     vim.keymap.set("n", "<leader><leader>e", "<cmd>Leet list difficulty=easy status=notac,todo<cr>")
     vim.keymap.set("n", "<leader><leader>m", "<cmd>Leet list difficulty=medium status=notac,todo<cr>")
     vim.keymap.set("n", "<leader><leader>h", "<cmd>Leet list difficulty=hard status=notac,todo<cr>")
+
+
+    -- Create autocmd that generates Cargo.toml for all rust files in leetcode directory
+    vim.api.nvim_create_autocmd("BufEnter", {
+      pattern = "*.rs",
+      callback = function()
+        local leetcode_dir = vim.fn.expand("~/.local/share/nvim/leetcode")
+        local cargo_toml_path = leetcode_dir .. "/Cargo.toml"
+
+        -- Check if the leetcode directory exists
+        if vim.fn.isdirectory(leetcode_dir) == 0 then
+          return
+        end
+
+        -- Get all .rs files in the directory
+        local rust_files = {}
+        local handle = vim.uv.fs_scandir(leetcode_dir)
+
+        if handle then
+          while true do
+            local name, type = vim.uv.fs_scandir_next(handle)
+            if not name then break end
+
+            if type == "file" and name:match("%.rs$") then
+              table.insert(rust_files, name)
+            end
+          end
+        end
+
+        -- Only proceed if we found rust files
+        if #rust_files == 0 then
+          return
+        end
+
+        -- Generate Cargo.toml content
+        local cargo_content = {
+          "[package]",
+          'name = "leetcode"',
+          'version = "0.1.0"',
+          'edition = "2024"',
+          ""
+        }
+
+        -- Add binary entries for each rust file
+        for _, file in ipairs(rust_files) do
+          local name = file:match("^(.+)%.rs$"):gsub("[^%w_]", "_"):gsub("^(%d)", "_%1")
+          table.insert(cargo_content, "[[bin]]")
+          table.insert(cargo_content, string.format('name = "%s"', name))
+          table.insert(cargo_content, string.format('path = "%s"', file))
+          table.insert(cargo_content, "")
+        end
+
+        -- Write the Cargo.toml file
+        local content_str = table.concat(cargo_content, "\n")
+        local file = io.open(cargo_toml_path, "w")
+        if file then
+          file:write(content_str)
+          file:close()
+        end
+      end,
+    })
   end,
 }
 
