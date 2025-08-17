@@ -139,7 +139,7 @@ return {
     vim.api.nvim_create_autocmd("BufEnter", {
       pattern = "*.rs",
       callback = function()
-        local leetcode_dir = vim.fn.expand("~/.local/share/nvim/leetcode")
+        local leetcode_dir = vim.fn.stdpath("data") .. "/leetcode"
         local cargo_toml_path = leetcode_dir .. "/Cargo.toml"
 
         -- Check if the leetcode directory exists
