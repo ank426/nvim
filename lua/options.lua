@@ -33,7 +33,7 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.switchbuf = {"useopen", "usetab", "uselast"}
 vim.opt.tabstop = 4
-vim.opt.textwidth = 150
+vim.opt.textwidth = 0
 
 
 vim.g.mapleader = " "

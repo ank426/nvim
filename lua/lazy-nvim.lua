@@ -22,7 +22,7 @@ require("lazy").setup({
     import = "plugins",
   },
   install = {
-    colorscheme = {"tokyonight"},
+    colorscheme = {"kanagawa"},
   },
   change_detection = {
     notify = false,
